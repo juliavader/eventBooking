@@ -1,5 +1,5 @@
-// state of advancement = 7
-// goal = create dynamic relations 
+// state of advancement = 8
+// goal = Adding the possibility to  book an event as an user 
 
 // node framework
 const express = require('express');
