@@ -1,5 +1,5 @@
-// state of advancement = 7
-// goal = create dynamic relations 
+// state of advancement = 9
+// goal = refactoring my code 
 
 // node framework
 const express = require('express');
