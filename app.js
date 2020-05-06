@@ -1,5 +1,5 @@
-// state of advancement = 8
-// goal = Adding the possibility to  book an event as an user 
+// state of advancement = 9
+// goal = refactoring my code 
 
 // node framework
 const express = require('express');
