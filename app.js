@@ -1,5 +1,5 @@
-// state of advancement = 9
-// goal = refactoring my code 
+// state of advancement = 11
+// goal = adding react 
 
 // node framework
 const express = require('express');
@@ -12,12 +12,15 @@ const mongoose = require('mongoose');
 const graphqlHttp = require('express-graphql');
 const app = express();
 
-// import schema 
+// import schema and resolver
 const graphQlSchema = require('./graphql/schema/index');
 const graphQlResolvers = require('./graphql/resolvers/index');
 
-app.use(bodyParser.json());
+// add resolver
+const isAuth = require('./middleware/is-auth'); 
 
+app.use(bodyParser.json());
+app.use(isAuth);
 
 app.use(
   '/graphql',
