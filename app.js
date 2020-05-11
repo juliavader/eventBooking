@@ -1,5 +1,6 @@
-// state of advancement = 11
-// goal = adding react 
+// state of advancement = 14
+// goal = using the token
+
 
 // node framework
 const express = require('express');
@@ -15,6 +16,17 @@ const app = express();
 // import schema and resolver
 const graphQlSchema = require('./graphql/schema/index');
 const graphQlResolvers = require('./graphql/resolvers/index');
+
+// Allow cross origin
+app.use((req, res, next) =>{
+  res.setHeader('Access-Control-Allow-Origin','*');
+  res.setHeader('Access-Control-Allow-Methods','POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization');
+  if(req.method == 'OPTIONS'){
+    return res.sendStatus(200);
+  }
+  next();
+});
 
 // add resolver
 const isAuth = require('./middleware/is-auth'); 
@@ -33,9 +45,9 @@ app.use(
 
 
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@eventbooking-ouibp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://julia:${process.env.MONGO_PASSWORD}@eventbooking-ouibp.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`)
     .then(() => {
-        app.listen(3000);
+        app.listen(8000);
     })
     .catch(err => {
         console.log(err);
