@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import "./css/Auth.css";
+import AuthContext from "../context/auth-context";
+
+
 export default class Auth extends Component {
-    state={
-        isLogin : true
+
+    state = {
+        isLogin: true
     }
+
     constructor(props) {
         super(props);
         this.emailEl = React.createRef();
         this.passwordEl = React.createRef();
     }
+
+    static contextType = AuthContext;
 
     submitHandler = event => {
         event.preventDefault();
@@ -31,7 +38,7 @@ export default class Auth extends Component {
             `
         };
 
-        if(!this.state.isLogin){
+        if (!this.state.isLogin) {
             requestBody = {
                 query: `
                   mutation {
@@ -43,7 +50,7 @@ export default class Auth extends Component {
                 `
             };
         }
-        
+
 
         fetch('http://localhost:8000/graphql', {
             method: 'POST',
@@ -52,25 +59,32 @@ export default class Auth extends Component {
                 'Content-Type': 'application/json'
             }
         })
-        .then(res => {
-            if (res.status != 200 && res.status != 201) {
-                throw new Error('Failed');
-            }
-            return res.json();
-        })
-        .then(resData=>{
-            console.log(resData);
-        })
-        .catch(err => {
-            console.log(err);
+            .then(res => {
+                if (res.status != 200 && res.status != 201) {
+                    throw new Error('Failed');
+                }
+                return res.json();
+            })
+            .then(resData => {
+                if (resData.data.login.token) {
+                    this.context.login(
+                        resData.data.login.token,
+                        resData.data.login.userId,
+                        resData.data.login.tokenExpiration
+                    );
+                }
+            })
+            
+            .catch(err => {
+                console.log(err);
 
-        });
+            });
     };
 
 
-    switchModeHandler=()=>{
-        this.setState(prevState=>{
-            return {isLogin: !prevState.isLogin};
+    switchModeHandler = () => {
+        this.setState(prevState => {
+            return { isLogin: !prevState.isLogin };
         })
     };
 

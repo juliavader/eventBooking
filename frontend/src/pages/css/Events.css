@@ -1,0 +1,10 @@
+.events-controls{
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 80%;
+}
+.events-paragraph{
+    color: #5101d1;
+    font-weight: bold;
+}
