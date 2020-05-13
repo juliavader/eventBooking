@@ -1,5 +1,5 @@
-// state of advancement = 15
-// goal = Adding a modal
+// state of advancement = 16
+// goal = Adding events endpoint to the front
 
 
 // node framework

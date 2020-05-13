@@ -7,7 +7,6 @@ module.exports = {
   events: async () => {
     try {
       const events = await Event.find();
-      console.log(events)
       return events.map(event => {
         return transformEvent(event);
       });

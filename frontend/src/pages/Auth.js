@@ -90,6 +90,7 @@ export default class Auth extends Component {
 
 
     render() {
+        console.log(this.contextType);
         return (
             <form className="auth-form" onSubmit={this.submitHandler}>
                 <div className="form-control">
